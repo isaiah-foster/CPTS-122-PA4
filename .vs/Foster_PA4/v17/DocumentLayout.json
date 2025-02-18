@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Mac\\Home\\Desktop\\Foster_PA4\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{81E3922B-49E8-421C-A5AB-3BEB7AAAE6A3}|Foster_PA4\\Foster_PA4.vcxproj|C:\\Mac\\Home\\Desktop\\Foster_PA4\\Foster_PA4\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{81E3922B-49E8-421C-A5AB-3BEB7AAAE6A3}|Foster_PA4\\Foster_PA4.vcxproj|solutionrelative:Foster_PA4\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81E3922B-49E8-421C-A5AB-3BEB7AAAE6A3}|Foster_PA4\\Foster_PA4.vcxproj|C:\\Mac\\Home\\Desktop\\Foster_PA4\\Foster_PA4\\DietPlan.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{81E3922B-49E8-421C-A5AB-3BEB7AAAE6A3}|Foster_PA4\\Foster_PA4.vcxproj|solutionrelative:Foster_PA4\\DietPlan.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81E3922B-49E8-421C-A5AB-3BEB7AAAE6A3}|Foster_PA4\\Foster_PA4.vcxproj|C:\\Mac\\Home\\Desktop\\Foster_PA4\\Foster_PA4\\ExercisePlan.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{81E3922B-49E8-421C-A5AB-3BEB7AAAE6A3}|Foster_PA4\\Foster_PA4.vcxproj|solutionrelative:Foster_PA4\\ExercisePlan.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81E3922B-49E8-421C-A5AB-3BEB7AAAE6A3}|Foster_PA4\\Foster_PA4.vcxproj|C:\\Mac\\Home\\Desktop\\Foster_PA4\\Foster_PA4\\Vector.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{81E3922B-49E8-421C-A5AB-3BEB7AAAE6A3}|Foster_PA4\\Foster_PA4.vcxproj|solutionrelative:Foster_PA4\\Vector.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81E3922B-49E8-421C-A5AB-3BEB7AAAE6A3}|Foster_PA4\\Foster_PA4.vcxproj|C:\\Mac\\Home\\Desktop\\Foster_PA4\\Foster_PA4\\fitnessApplication.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{81E3922B-49E8-421C-A5AB-3BEB7AAAE6A3}|Foster_PA4\\Foster_PA4.vcxproj|solutionrelative:Foster_PA4\\fitnessApplication.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ExercisePlan.hpp",
+              "DocumentMoniker": "C:\\Mac\\Home\\Desktop\\Foster_PA4\\Foster_PA4\\ExercisePlan.hpp",
+              "RelativeDocumentMoniker": "Foster_PA4\\ExercisePlan.hpp",
+              "ToolTip": "C:\\Mac\\Home\\Desktop\\Foster_PA4\\Foster_PA4\\ExercisePlan.hpp",
+              "RelativeToolTip": "Foster_PA4\\ExercisePlan.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-02-18T20:40:30.772Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DietPlan.hpp",
+              "DocumentMoniker": "C:\\Mac\\Home\\Desktop\\Foster_PA4\\Foster_PA4\\DietPlan.hpp",
+              "RelativeDocumentMoniker": "Foster_PA4\\DietPlan.hpp",
+              "ToolTip": "C:\\Mac\\Home\\Desktop\\Foster_PA4\\Foster_PA4\\DietPlan.hpp",
+              "RelativeToolTip": "Foster_PA4\\DietPlan.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-02-18T20:40:12.964Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Vector.hpp",
+              "DocumentMoniker": "C:\\Mac\\Home\\Desktop\\Foster_PA4\\Foster_PA4\\Vector.hpp",
+              "RelativeDocumentMoniker": "Foster_PA4\\Vector.hpp",
+              "ToolTip": "C:\\Mac\\Home\\Desktop\\Foster_PA4\\Foster_PA4\\Vector.hpp",
+              "RelativeToolTip": "Foster_PA4\\Vector.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-02-18T20:21:49.885Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "fitnessApplication.hpp",
+              "DocumentMoniker": "C:\\Mac\\Home\\Desktop\\Foster_PA4\\Foster_PA4\\fitnessApplication.hpp",
+              "RelativeDocumentMoniker": "Foster_PA4\\fitnessApplication.hpp",
+              "ToolTip": "C:\\Mac\\Home\\Desktop\\Foster_PA4\\Foster_PA4\\fitnessApplication.hpp",
+              "RelativeToolTip": "Foster_PA4\\fitnessApplication.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-02-18T18:54:57.53Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Mac\\Home\\Desktop\\Foster_PA4\\Foster_PA4\\main.cpp",
+              "RelativeDocumentMoniker": "Foster_PA4\\main.cpp",
+              "ToolTip": "C:\\Mac\\Home\\Desktop\\Foster_PA4\\Foster_PA4\\main.cpp",
+              "RelativeToolTip": "Foster_PA4\\main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-02-18T18:55:01.383Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
