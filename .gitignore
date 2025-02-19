@@ -416,6 +416,8 @@ FodyWeavers.xsd
 *.so
 *.dylib
 *.dll
+*.DS_Store
+ARM64/
 
 # Fortran module files
 *.mod
