@@ -12,7 +12,7 @@ public:
 };
 
 
-class FitnessAppWrapper
+class FitnessAppWrapper 
 {
 
 private:
@@ -22,6 +22,7 @@ private:
 	ExercisePlan dailyExercisePlan;
 	fstream dietFile;
 	fstream exerciseFile;
+
 
 public:
 
