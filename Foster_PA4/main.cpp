@@ -4,6 +4,7 @@
 
 int main(void)
 {
+	//Should do in main
 	std::ifstream dietInFile("dietPlans.txt");
 	std::ifstream exerciseInFile("exercisePlans.txt");
 

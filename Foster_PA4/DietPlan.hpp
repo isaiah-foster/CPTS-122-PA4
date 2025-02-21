@@ -101,7 +101,7 @@ void DietPlan::printPlan() const
 ostream& operator<<(ostream& lhs, DietPlan& rhs);
 ifstream& operator>>(ifstream& lhs, DietPlan& rhs);
 
-
+//Nonmember function definitions
 ostream& operator<<(ostream& lhs, DietPlan& rhs)
 {
 	lhs << "Plan Name: " << rhs.getPlanName() << endl;
