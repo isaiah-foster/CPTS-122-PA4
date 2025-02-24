@@ -33,7 +33,7 @@ public:
 	void editGoal();
 	void editName();
 	void editDate();
-	void printPlan();
+	void printPlan()const ;
 };
 
 ExercisePlan::ExercisePlan()
@@ -99,7 +99,7 @@ void ExercisePlan::editDate()
 	cout << "Enter your new date: ";
 	cin >> date;
 }
-void ExercisePlan::printPlan()
+void ExercisePlan::printPlan() const
 {
 	cout << "Plan Name: " << planName << endl;
 	cout << "Goal Steps: " << goal << endl;
@@ -129,10 +129,11 @@ void operator<<(ofstream& lhs, ExercisePlan& rhs)
 ExercisePlan& operator>>(ifstream& lhs, ExercisePlan& rhs)
 {
 	int steps = 0;
-	string name = "", date = "", blank;
+	string name = "", name1, name2, date = "", blank = "";
 
-
-	std::getline(lhs, name);
+	lhs >> name1;
+	lhs >> name2;
+	name = name1 + " " + name2;
 	rhs.setPlanName(name);
 
 	lhs >> steps;
@@ -140,12 +141,6 @@ ExercisePlan& operator>>(ifstream& lhs, ExercisePlan& rhs)
 
 	lhs >> date;
 	rhs.setDate(date);
-
-	//get rid of empty line in between
-	if (!lhs.eof())
-	{
-		lhs >> blank;
-	}
 
 	return rhs;
 }

@@ -121,10 +121,11 @@ void operator<<(ofstream& lhs, DietPlan& rhs)
 DietPlan& operator>>(ifstream& lhs, DietPlan& rhs)
 {
 	int cals = 0;
-	string name = "", date = "", blank = "";
+	string name = "", name1, name2, date = "", blank = "";
 
-
-	getline(lhs, name);
+	lhs >> name1;
+	lhs >> name2;
+	name = name1 + " " + name2;
 	rhs.setPlanName(name);
 
 	lhs >> cals;
@@ -133,11 +134,6 @@ DietPlan& operator>>(ifstream& lhs, DietPlan& rhs)
 	lhs >> date;
 	rhs.setDate(date);
 
-	//get rid of empty line in between
-	if (!lhs.eof())
-	{
-		lhs >> blank;
-	}
 	return rhs;
 }
 

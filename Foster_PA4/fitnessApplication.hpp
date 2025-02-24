@@ -86,6 +86,7 @@ void FitnessAppWrapper::loadWeeklyPlan(ifstream& fileStream, List<DietPlan> *lis
 
 void FitnessAppWrapper::loadWeeklyPlan(ifstream& fileStream, List<ExercisePlan> *list)
 {
+	list->clearList();
 	ExercisePlan tempPlan;
 	while (!fileStream.eof())
 	{
@@ -112,7 +113,10 @@ void FitnessAppWrapper::storeWeeklyPlan(ofstream& fileStream, List<DietPlan> lis
 	{
 		planCur = pCur->getPlan();
 		storeDailyPlan(fileStream, planCur);
-		fileStream << "\n";
+		if (pCur->getNext() != nullptr)
+		{
+			fileStream << "\n";
+		}
 		pCur = pCur->getNext();
 	}
 }
@@ -124,7 +128,10 @@ void FitnessAppWrapper::storeWeeklyPlan(ofstream& fileStream, List<ExercisePlan>
 	{
 		planCur = pCur->getPlan();
 		storeDailyPlan(fileStream, planCur);
-		fileStream << "\n";
+		if (pCur->getNext() != nullptr)
+		{
+			fileStream << "\n";
+		}
 		pCur = pCur->getNext();
 	}
 }
@@ -134,10 +141,12 @@ void FitnessAppWrapper::storeWeeklyPlan(ofstream& fileStream, List<ExercisePlan>
 void FitnessAppWrapper::displayDailyPlan(DietPlan planCur)
 {
 	cout << planCur;
+	cout << "\n";
 }
 void FitnessAppWrapper::displayDailyPlan(ExercisePlan planCur)
 {
 	cout << planCur;
+	cout << "\n";
 }
 
 void FitnessAppWrapper::displayWeeklyPlan(List<DietPlan> *dietList)
