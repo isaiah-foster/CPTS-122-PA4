@@ -71,6 +71,7 @@ string DietPlan::getDate() const
 {
 	return date;
 }
+
 void DietPlan::editGoal()
 {
 	do
@@ -79,7 +80,6 @@ void DietPlan::editGoal()
 		cin >> goal;
 	} while (goal < 0);
 }
-
 void DietPlan::editName()
 {
 	cout << "Enter your new plan name: ";
@@ -90,27 +90,28 @@ void DietPlan::editDate()
 	cout << "Enter your new date: ";
 	cin >> date;
 }
+
 void DietPlan::printPlan() const
 {
 	cout << "Plan Name: " << planName << endl;
-	cout << "Goal Steps: " << goal << endl;
+	cout << "Goal Calories: " << goal << endl;
 	cout << "Date: " << date << endl;
 }
 
 //Nonmember functions
-void operator<<(ofstream& lhs, DietPlan& rhs);
 void operator<<(ostream& lhs, DietPlan& rhs);
+void operator<<(ofstream& lhs, DietPlan& rhs);
 DietPlan& operator>>(ifstream& lhs, DietPlan& rhs);
 
 
-void operator<<(ofstream& lhs, DietPlan& rhs)
+void operator<<(ostream& lhs, DietPlan& rhs)
 {
 	lhs << "Plan Name: " << rhs.getPlanName() << endl;
-	lhs << "Goal Steps: " << rhs.getGoal() << endl;
+	lhs << "Goal Calories: " << rhs.getGoal() << endl;
 	lhs << "Date: " << rhs.getDate() << endl;
 	
 }
-void operator<<(ostream& lhs, DietPlan& rhs)
+void operator<<(ofstream& lhs, DietPlan& rhs)
 {
 	lhs << rhs.getPlanName() << endl;
 	lhs << rhs.getGoal() << endl;
@@ -120,9 +121,10 @@ void operator<<(ostream& lhs, DietPlan& rhs)
 DietPlan& operator>>(ifstream& lhs, DietPlan& rhs)
 {
 	int cals = 0;
-	string name = "", date = "";
+	string name = "", date = "", blank = "";
 
-	lhs >> name;
+
+	getline(lhs, name);
 	rhs.setPlanName(name);
 
 	lhs >> cals;
@@ -131,6 +133,11 @@ DietPlan& operator>>(ifstream& lhs, DietPlan& rhs)
 	lhs >> date;
 	rhs.setDate(date);
 
+	//get rid of empty line in between
+	if (!lhs.eof())
+	{
+		lhs >> blank;
+	}
 	return rhs;
 }
 

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <cstdlib>
 #include "ExercisePlan.hpp"
 #include "DietPlan.hpp"
 

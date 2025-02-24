@@ -4,6 +4,15 @@
 #include <fstream>
 using std::string;
 
+using std::string;
+using std::fstream;
+using std::cout;
+using std::cin;
+using std::endl;
+using std::ifstream;
+using std::ostream;
+using std::string;
+using std::ofstream;
 class ExercisePlan
 {
 private:
@@ -98,19 +107,19 @@ void ExercisePlan::printPlan()
 }
 
 //Nonmember functions
-void operator<<(ofstream& lhs, ExercisePlan& rhs);
 void operator<<(ostream& lhs, ExercisePlan& rhs);
+void operator<<(ofstream& lhs, ExercisePlan& rhs);
 ExercisePlan& operator>>(ifstream& lhs, ExercisePlan& rhs);
 
 
-void operator<<(ofstream& lhs, ExercisePlan& rhs)
+void operator<<(ostream& lhs, ExercisePlan& rhs)
 {
 	lhs << "Plan Name: " << rhs.getPlanName() << endl;
 	lhs << "Goal Steps: " << rhs.getGoal() << endl;
 	lhs << "Date: " << rhs.getDate() << endl;
 }
 
-void operator<<(ostream& lhs, ExercisePlan& rhs)
+void operator<<(ofstream& lhs, ExercisePlan& rhs)
 {
 	lhs << rhs.getPlanName() << endl;
 	lhs << rhs.getGoal() << endl;
@@ -120,9 +129,10 @@ void operator<<(ostream& lhs, ExercisePlan& rhs)
 ExercisePlan& operator>>(ifstream& lhs, ExercisePlan& rhs)
 {
 	int steps = 0;
-	string name = "", date = "";
+	string name = "", date = "", blank;
 
-	lhs >> name;
+
+	std::getline(lhs, name);
 	rhs.setPlanName(name);
 
 	lhs >> steps;
@@ -130,6 +140,12 @@ ExercisePlan& operator>>(ifstream& lhs, ExercisePlan& rhs)
 
 	lhs >> date;
 	rhs.setDate(date);
+
+	//get rid of empty line in between
+	if (!lhs.eof())
+	{
+		lhs >> blank;
+	}
 
 	return rhs;
 }

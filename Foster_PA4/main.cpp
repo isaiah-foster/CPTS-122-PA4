@@ -1,12 +1,10 @@
 #include "fitnessApplication.hpp"
 
-
-
 int main(void)
 {
-	FitnessAppWrapper application("dietPlans.txt", "exercisePlans.txt");
+	FitnessAppWrapper application;
 
-	application.runApp;
+	application.runApp();
 
 	return 0;
 }

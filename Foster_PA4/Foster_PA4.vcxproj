@@ -187,7 +187,6 @@
     <ClInclude Include="fitnessApplication.hpp" />
     <ClInclude Include="Includes.hpp" />
     <ClInclude Include="LinkedLists.hpp" />
-    <ClInclude Include="Vector.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

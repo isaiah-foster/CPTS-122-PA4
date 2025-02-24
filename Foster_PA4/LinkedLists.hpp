@@ -1,5 +1,14 @@
 #pragma once
 #include "FitnessApplication.hpp"
+using std::string;
+using std::fstream;
+using std::cout;
+using std::cin;
+using std::endl;
+using std::ifstream;
+using std::ostream;
+using std::string;
+using std::ofstream;
 
 #pragma region Node
 template <typename T>
@@ -10,7 +19,7 @@ private:
 	Node<T>* pNext;
 public:
 	Node(T newPlan);
-	T getPlan();
+	T& getPlan();
 	Node* getNext();
 	void setNext(Node* newNext);
 };
@@ -23,7 +32,7 @@ Node<T>::Node(T newPlan)
 }
 
 template<typename T>
-T Node<T>::getPlan()
+T& Node<T>::getPlan()
 {
 	return Plan;
 }
@@ -53,32 +62,20 @@ public:
 	~List();
 	void insertAtFront(T newData);
 	bool isEmpty();
-	void printList();
-	void deleteAtFront();
-	void deleteAtEnd();
+	Node<T>* getHead();
+	void clearList();
 };
 
 template <typename T>
 List<T>::List()
 {
 	pHead = nullptr;
-	pTail = nullptr;
 }
 
 template <typename T>
 List<T>::~List()
 {
 	pHead = nullptr;
-	pTail = nullptr;
-}
-
-template <typename T>
-void List<T>::insertAtFront(T newData)
-{
-	//should work for empty and not empty
-	Node<T> newNode = new Node(newData);
-	newNode.setNext(*pHead);
-	pHead = &newNode;
 }
 
 template <typename T>
@@ -89,6 +86,34 @@ bool List<T>::isEmpty()
 		return true;
 	}
 	return false;
+}
+template <typename T>
+Node<T>* List<T>::getHead()
+{
+	return pHead;
+}
+
+template <typename T>
+void List<T>::insertAtFront(T newData)
+{
+	//should work for empty and not empty
+	Node<T>* newNode = new Node<T>(newData);
+	newNode->setNext(pHead);
+	pHead = newNode;
+}
+
+template <typename T>
+void List<T>::clearList()
+{
+	Node<T>* pCur = pHead;
+	Node<T>* pNext = nullptr;
+	while (pCur != nullptr)
+	{
+		pNext = pCur->getNext();
+		delete pCur;
+		pCur = pNext;
+	}
+	pHead = nullptr;
 }
 
 #pragma endregion
