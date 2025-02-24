@@ -1,10 +1,13 @@
 #pragma once
-#include "fitnessApplication.hpp"
+#include "Includes.hpp"
+#include <string>
+#include <fstream>
+using std::string;
 
 class ExercisePlan
 {
 private:
-	int goalSteps;
+	int goal;
 	string planName;
 	string date;
 public:
@@ -12,10 +15,10 @@ public:
 	ExercisePlan(int _goalSteps, string _planName, string _date);
 	ExercisePlan(const ExercisePlan& copy);
 	~ExercisePlan();
-	void setGoalSteps(int _goalSteps);
+	void setGoal(int _goalSteps);
 	void setPlanName(string _planName);
 	void setDate(string _date);
-	int getGoalSteps() const; //const at end means it is a read only function
+	int getGoal() const; //const at end means it is a read only function
 	string getPlanName() const;
 	string getDate() const;
 	void editGoal();
@@ -26,28 +29,28 @@ public:
 
 ExercisePlan::ExercisePlan()
 {
-	goalSteps = 0;
+	goal = 0;
 	planName = "";
 	date = "";
 }
 ExercisePlan::ExercisePlan(int _goalSteps, string _planName, string _date)
 {
-	goalSteps = _goalSteps;
+	goal = _goalSteps;
 	planName = _planName;
 	date = _date;
 }
 ExercisePlan::ExercisePlan(const ExercisePlan& copy)
 {
-	goalSteps = copy.goalSteps;
+	goal = copy.goal;
 	planName = copy.planName;
 	date = copy.date;
 }
 ExercisePlan::~ExercisePlan()
 {
 }
-void ExercisePlan::setGoalSteps(int _goalSteps)
+void ExercisePlan::setGoal(int _goalSteps)
 {
-	goalSteps = _goalSteps;
+	goal = _goalSteps;
 }
 void ExercisePlan::setPlanName(string _planName)
 {
@@ -57,9 +60,9 @@ void ExercisePlan::setDate(string _date)
 {
 	date = _date;
 }
-int ExercisePlan::getGoalSteps() const
+int ExercisePlan::getGoal() const
 {
-	return goalSteps;
+	return goal;
 }
 string ExercisePlan::getPlanName() const
 {
@@ -74,8 +77,8 @@ void ExercisePlan::editGoal()
 	do
 	{
 		cout << "Enter your new goal step count: ";
-		cin >> goalSteps;
-	} while (goalSteps < 0);
+		cin >> goal;
+	} while (goal < 0);
 }
 void ExercisePlan::editName()
 {
@@ -90,23 +93,31 @@ void ExercisePlan::editDate()
 void ExercisePlan::printPlan()
 {
 	cout << "Plan Name: " << planName << endl;
-	cout << "Goal Steps: " << goalSteps << endl;
+	cout << "Goal Steps: " << goal << endl;
 	cout << "Date: " << date << endl;
 }
 
 //Nonmember functions
-ostream& operator<<(ostream& lhs, ExercisePlan& rhs);
-ifstream& operator>>(ifstream& lhs, ExercisePlan& rhs);
+void operator<<(ofstream& lhs, ExercisePlan& rhs);
+void operator<<(ostream& lhs, ExercisePlan& rhs);
+ExercisePlan& operator>>(ifstream& lhs, ExercisePlan& rhs);
 
 
-ostream& operator<<(ostream& lhs, ExercisePlan& rhs)
+void operator<<(ofstream& lhs, ExercisePlan& rhs)
 {
 	lhs << "Plan Name: " << rhs.getPlanName() << endl;
-	lhs << "Goal Steps: " << rhs.getGoalSteps() << endl;
+	lhs << "Goal Steps: " << rhs.getGoal() << endl;
 	lhs << "Date: " << rhs.getDate() << endl;
-	return lhs;
 }
-ifstream& operator>>(ifstream& lhs, ExercisePlan& rhs)
+
+void operator<<(ostream& lhs, ExercisePlan& rhs)
+{
+	lhs << rhs.getPlanName() << endl;
+	lhs << rhs.getGoal() << endl;
+	lhs << rhs.getDate() << endl;
+}
+
+ExercisePlan& operator>>(ifstream& lhs, ExercisePlan& rhs)
 {
 	int steps = 0;
 	string name = "", date = "";
@@ -115,10 +126,10 @@ ifstream& operator>>(ifstream& lhs, ExercisePlan& rhs)
 	rhs.setPlanName(name);
 
 	lhs >> steps;
-	rhs.setGoalSteps(steps);
+	rhs.setGoal(steps);
 
 	lhs >> date;
 	rhs.setDate(date);
 
-	return lhs;
+	return rhs;
 }

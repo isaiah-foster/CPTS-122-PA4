@@ -1,10 +1,10 @@
 #pragma once
-#include "fitnessApplication.hpp"
+#include "Includes.hpp"
 
 class DietPlan
 {
 private:
-	int goalCalories;
+	int goal;
 	string planName;
 	string date;
 public:
@@ -12,10 +12,10 @@ public:
 	DietPlan(int _goalCalories, string _planName, string _date);
 	DietPlan(const DietPlan& copy);
 	~DietPlan();
-	void setGoalCalories(int _goalCalories);
+	void setGoal(int _goalCalories);
 	void setPlanName(string _planName);
 	void setDate(string _date);
-	int getGoalCalories() const; //const at end means it is a read only function
+	int getGoal() const; //const at end means it is a read only function
 	string getPlanName() const;
 	string getDate() const;
 	void editGoal();
@@ -26,19 +26,19 @@ public:
 
 DietPlan::DietPlan()
 {
-	goalCalories = 0;
+	goal = 0;
 	planName = "";
 	date = "";
 }
 DietPlan::DietPlan(int _goalCalories, string _planName, string _date)
 {
-	goalCalories = _goalCalories;
+	goal = _goalCalories;
 	planName = _planName;
 	date = _date;
 }
 DietPlan::DietPlan(const DietPlan& copy)
 {
-	goalCalories = copy.goalCalories;
+	goal = copy.goal;
 	planName = copy.planName;
 	date = copy.date;
 }
@@ -46,9 +46,9 @@ DietPlan::~DietPlan()
 {
 
 }
-void DietPlan::setGoalCalories(int _goalCalories)
+void DietPlan::setGoal(int _goalCalories)
 {
-	goalCalories = _goalCalories;
+	goal = _goalCalories;
 }
 
 void DietPlan::setPlanName(string _planName)
@@ -59,9 +59,9 @@ void DietPlan::setDate(string _date)
 {
 	date = _date;
 }
-int DietPlan::getGoalCalories() const
+int DietPlan::getGoal() const
 {
-	return goalCalories;
+	return goal;
 }
 string DietPlan::getPlanName() const
 {
@@ -76,8 +76,8 @@ void DietPlan::editGoal()
 	do
 	{
 		cout << "Enter your new goal calorie count: ";
-		cin >> goalCalories;
-	} while (goalCalories < 0);
+		cin >> goal;
+	} while (goal < 0);
 }
 
 void DietPlan::editName()
@@ -93,23 +93,31 @@ void DietPlan::editDate()
 void DietPlan::printPlan() const
 {
 	cout << "Plan Name: " << planName << endl;
-	cout << "Goal Steps: " << goalCalories << endl;
+	cout << "Goal Steps: " << goal << endl;
 	cout << "Date: " << date << endl;
 }
 
 //Nonmember functions
-ostream& operator<<(ostream& lhs, DietPlan& rhs);
-ifstream& operator>>(ifstream& lhs, DietPlan& rhs);
+void operator<<(ofstream& lhs, DietPlan& rhs);
+void operator<<(ostream& lhs, DietPlan& rhs);
+DietPlan& operator>>(ifstream& lhs, DietPlan& rhs);
 
 
-ostream& operator<<(ostream& lhs, DietPlan& rhs)
+void operator<<(ofstream& lhs, DietPlan& rhs)
 {
 	lhs << "Plan Name: " << rhs.getPlanName() << endl;
-	lhs << "Goal Steps: " << rhs.getGoalCalories() << endl;
+	lhs << "Goal Steps: " << rhs.getGoal() << endl;
 	lhs << "Date: " << rhs.getDate() << endl;
-	return lhs;
+	
 }
-ifstream& operator>>(ifstream& lhs, DietPlan& rhs)
+void operator<<(ostream& lhs, DietPlan& rhs)
+{
+	lhs << rhs.getPlanName() << endl;
+	lhs << rhs.getGoal() << endl;
+	lhs << rhs.getDate() << endl;
+}
+
+DietPlan& operator>>(ifstream& lhs, DietPlan& rhs)
 {
 	int cals = 0;
 	string name = "", date = "";
@@ -118,10 +126,11 @@ ifstream& operator>>(ifstream& lhs, DietPlan& rhs)
 	rhs.setPlanName(name);
 
 	lhs >> cals;
-	rhs.setGoalCalories(cals);
+	rhs.setGoal(cals);
 
 	lhs >> date;
 	rhs.setDate(date);
 
-	return lhs;
+	return rhs;
 }
+

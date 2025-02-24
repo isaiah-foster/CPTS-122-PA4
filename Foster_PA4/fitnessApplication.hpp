@@ -1,35 +1,74 @@
 #pragma once
-#include <iostream>
+#include "Includes.hpp"
+#include "DietPlan.hpp"
+#include "ExercisePlan.hpp"
+#include "LinkedLists.hpp"
 #include <string>
 #include <fstream>
-#include "ExercisePlan.hpp"
-#include "DietPlan.hpp"
-
 using std::string;
-using std::fstream;
-using std::cout;
-using std::cin;
-using std::endl;
 using std::ifstream;
-using std::ostream;
 
 class FitnessAppWrapper
 {
 private:
-	DietPlan* dietPlansHead;
-	ExercisePlan* exercisePlansHead;
+	List<DietPlan> dietList;
+	List<ExercisePlan> exerciseList;
+	ifstream dietIn;
+	ifstream exerciseIn;
 
-	template <typename T>
-	void loadDailyPlan(ifstream& filesStream, T* plan);
+public:
 
-	template <typename T>
-	void loadWeeklyPlan(ifstream& filesStream, T* plan);
+	FitnessAppWrapper(string dietFile, string exerciseFile);
 
-	template <typename T>
-	void displayDailyPlan(T* plan);
 
-	template <typename T>
-	void displayWeeklyPlan(T* plan);
-
+	void loadDailyPlan(DietPlan *list);
+	void loadDailyPlan(ExercisePlan* list);
 
 	
+	void loadWeeklyPlan(DietPlan plan);
+	void loadWeeklyPlan(ExercisePlan plan);
+
+
+
+	void displayDailyPlan(DietPlan plan);
+	void displayDailyPlan(ExercisePlan plan);
+
+
+
+	void displayWeeklyPlan(DietPlan plan);
+	void displayWeeklyPlan(ExercisePlan plan);
+
+};
+
+FitnessAppWrapper::FitnessAppWrapper(string dietFile, string exerciseFile)
+{
+	ifstream dietIn(dietFile);
+	ifstream exerciseIn(exerciseFile);
+}
+
+
+void FitnessAppWrapper::loadDailyPlan(DietPlan *list)
+{
+	DietPlan newPlan;
+	dietIn >> newPlan;
+	dietList.insertAtFront(newPlan);
+}
+
+void FitnessAppWrapper::loadDailyPlan(ExercisePlan* list)
+{
+	ExercisePlan newPlan;
+	exerciseIn >> newPlan;
+	exerciseList.insertAtFront(newPlan);
+	
+}
+
+
+void FitnessAppWrapper::loadWeeklyPlan(DietPlan plan)
+{
+	DietPlan newPlan;
+	while (!exerciseIn.eof())
+	{
+
+	}
+}
+void loadWeeklyPlan(ExercisePlan plan);

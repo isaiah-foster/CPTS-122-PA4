@@ -27,6 +27,12 @@
     <ClInclude Include="ExercisePlan.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LinkedLists.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -38,6 +44,12 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="dietPlans.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="dietOut.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="exerciseOut.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

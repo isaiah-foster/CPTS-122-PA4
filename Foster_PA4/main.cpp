@@ -4,15 +4,9 @@
 
 int main(void)
 {
-	std::ifstream dietInFile("dietPlans.txt");
-	std::ifstream exerciseInFile("exercisePlans.txt");
+	FitnessAppWrapper application("dietPlans.txt", "exercisePlans.txt");
 
-	FitnessAppWrapper fitnessApp;
-	
-
-
-
-
+	application.runApp;
 
 	return 0;
 }

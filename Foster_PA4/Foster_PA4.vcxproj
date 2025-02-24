@@ -185,13 +185,17 @@
     <ClInclude Include="DietPlan.hpp" />
     <ClInclude Include="ExercisePlan.hpp" />
     <ClInclude Include="fitnessApplication.hpp" />
+    <ClInclude Include="Includes.hpp" />
+    <ClInclude Include="LinkedLists.hpp" />
     <ClInclude Include="Vector.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="dietOut.txt" />
     <Text Include="dietPlans.txt" />
+    <Text Include="exerciseOut.txt" />
     <Text Include="exercisePlans.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
