@@ -1,14 +1,5 @@
 #pragma once
 #include "FitnessApplication.hpp"
-using std::string;
-using std::fstream;
-using std::cout;
-using std::cin;
-using std::endl;
-using std::ifstream;
-using std::ostream;
-using std::string;
-using std::ofstream;
 
 #pragma region Node
 template <typename T>
@@ -57,6 +48,7 @@ class List
 {
 private:
 	Node<T>* pHead;
+	void setHead(Node<T>* newHead);
 public:
 	List();
 	~List();
@@ -95,12 +87,26 @@ Node<T>* List<T>::getHead()
 }
 
 template <typename T>
+void List<T>::setHead(Node<T>* newHead)
+{
+	pHead = newHead;
+}
+
+template <typename T>
 void List<T>::insertAtFront(T newData)
 {
-	//should work for empty and not empty
-	Node<T>* newNode = new Node<T>(newData);
-	newNode->setNext(pHead);
-	pHead = newNode;
+	//empty list
+	if (isEmpty())
+	{
+		Node<T>* newNode = new Node<T>(newData);
+		setHead(newNode);
+	}
+	else
+	{
+		Node<T>* newNode = new Node<T>(newData);
+		newNode->setNext(pHead);
+		setHead(newNode);
+	}
 }
 
 template <typename T>

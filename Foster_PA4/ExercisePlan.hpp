@@ -1,9 +1,7 @@
 #pragma once
-#include "Includes.hpp"
-#include <string>
-#include <fstream>
-using std::string;
+#include "FitnessApplication.hpp"
 
+#pragma region Using Statements
 using std::string;
 using std::fstream;
 using std::cout;
@@ -13,6 +11,8 @@ using std::ifstream;
 using std::ostream;
 using std::string;
 using std::ofstream;
+#pragma endregion
+
 class ExercisePlan
 {
 private:
@@ -58,6 +58,7 @@ ExercisePlan::~ExercisePlan()
 {
 	
 }
+
 void ExercisePlan::setGoal(int _goalSteps)
 {
 	goal = _goalSteps;
@@ -70,6 +71,7 @@ void ExercisePlan::setDate(string _date)
 {
 	date = _date;
 }
+
 int ExercisePlan::getGoal() const
 {
 	return goal;
@@ -82,6 +84,7 @@ string ExercisePlan::getDate() const
 {
 	return date;
 }
+
 void ExercisePlan::editGoal()
 {
 	do
@@ -100,6 +103,7 @@ void ExercisePlan::editDate()
 	cout << "Enter your new date: ";
 	cin >> date;
 }
+
 void ExercisePlan::printPlan() const
 {
 	cout << "Plan Name: " << planName << endl;
@@ -112,7 +116,6 @@ void operator<<(ostream& lhs, ExercisePlan& rhs);
 void operator<<(ofstream& lhs, ExercisePlan& rhs);
 ExercisePlan& operator>>(ifstream& lhs, ExercisePlan& rhs);
 
-
 void operator<<(ostream& lhs, ExercisePlan& rhs)
 {
 	lhs << "Plan Name: " << rhs.getPlanName() << endl;
@@ -124,7 +127,7 @@ void operator<<(ofstream& lhs, ExercisePlan& rhs)
 {
 	lhs << rhs.getPlanName() << endl;
 	lhs << rhs.getGoal() << endl;
-	lhs << rhs.getDate() << endl;
+	lhs << rhs.getDate();
 }
 
 ExercisePlan& operator>>(ifstream& lhs, ExercisePlan& rhs)

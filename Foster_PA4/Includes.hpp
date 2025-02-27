@@ -5,6 +5,8 @@
 #include <cstdlib>
 #include "ExercisePlan.hpp"
 #include "DietPlan.hpp"
+#include "LinkedLists.hpp"
+#include "fitnessApplication.hpp"
 
 using std::string;
 using std::fstream;

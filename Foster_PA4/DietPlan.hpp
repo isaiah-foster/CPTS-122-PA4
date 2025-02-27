@@ -1,5 +1,17 @@
 #pragma once
-#include "Includes.hpp"
+#include "FitnessApplication.hpp"
+
+#pragma region Using Statements
+using std::string;
+using std::fstream;
+using std::cout;
+using std::cin;
+using std::endl;
+using std::ifstream;
+using std::ostream;
+using std::string;
+using std::ofstream;
+#pragma endregion
 
 class DietPlan
 {
@@ -96,14 +108,13 @@ void DietPlan::printPlan() const
 {
 	cout << "Plan Name: " << planName << endl;
 	cout << "Goal Calories: " << goal << endl;
-	cout << "Date: " << date << endl;
+	cout << "Date: " << date;
 }
 
 //Nonmember functions
 void operator<<(ostream& lhs, DietPlan& rhs);
 void operator<<(ofstream& lhs, DietPlan& rhs);
 DietPlan& operator>>(ifstream& lhs, DietPlan& rhs);
-
 
 void operator<<(ostream& lhs, DietPlan& rhs)
 {
@@ -112,11 +123,12 @@ void operator<<(ostream& lhs, DietPlan& rhs)
 	lhs << "Date: " << rhs.getDate() << endl;
 	
 }
+
 void operator<<(ofstream& lhs, DietPlan& rhs)
 {
 	lhs << rhs.getPlanName() << endl;
 	lhs << rhs.getGoal() << endl;
-	lhs << rhs.getDate() << endl;
+	lhs << rhs.getDate();
 }
 
 DietPlan& operator>>(ifstream& lhs, DietPlan& rhs)
@@ -137,4 +149,3 @@ DietPlan& operator>>(ifstream& lhs, DietPlan& rhs)
 
 	return rhs;
 }
-

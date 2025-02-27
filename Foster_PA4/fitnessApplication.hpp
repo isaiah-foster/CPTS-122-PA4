@@ -1,12 +1,5 @@
 #pragma once
 #include "Includes.hpp"
-#include "DietPlan.hpp"
-#include "ExercisePlan.hpp"
-#include "LinkedLists.hpp"
-#include <string>
-#include <fstream>
-using std::string;
-using std::ifstream;
 
 class FitnessAppWrapper
 {
@@ -21,29 +14,31 @@ private:
 public:
 
 	FitnessAppWrapper();
+	~FitnessAppWrapper();
 
-	void loadDailyPlan(ifstream& fileStream, DietPlan& plan);
-	void loadDailyPlan(ifstream& fileStream, ExercisePlan& plan);
+	template <typename T>
+	void loadDailyPlan(ifstream& fileStream, T& plan);
 	
-	void loadWeeklyPlan(ifstream& fileStream, List<DietPlan> *list);
-	void loadWeeklyPlan(ifstream& fileStream, List<ExercisePlan> *list);
+	template <typename T>
+	void loadWeeklyPlan(ifstream& fileStream, List<T> *list);
 
-	void storeDailyPlan(ofstream& fileStream, DietPlan& plan);
-	void storeDailyPlan(ofstream& fileStream, ExercisePlan& plan);
+	template <typename T>
+	void storeDailyPlan(ofstream& fileStream, T& plan);
 
-	void storeWeeklyPlan(ofstream& fileStream, List<DietPlan> list);
-	void storeWeeklyPlan(ofstream& fileStream, List<ExercisePlan> list);
+	template <typename T>
+	void storeWeeklyPlan(ofstream& fileStream, List<T>& list);
 
-	void displayDailyPlan(DietPlan planCur);
-	void displayDailyPlan(ExercisePlan planCur);
+	template <typename T>
+	void displayDailyPlan(T planCur);
 
-	void displayWeeklyPlan(List<DietPlan> *dietList);
-	void displayWeeklyPlan(List<ExercisePlan> *exerciseList);
+	template <typename T>
+	void displayWeeklyPlan(List<T> *exerciseList);
 
-	DietPlan* getPlan(List<DietPlan>* list);
-	ExercisePlan* getPlan(List<ExercisePlan>* list);
-	void editDailyPlan(DietPlan *plan);
-	void editDailyPlan(ExercisePlan *plan);
+	template <typename T>
+	T* getPlan(List<T>* list);
+
+	template <typename T>
+	void editDailyPlan(T *plan);
 
 	void displayMenu();
 	int getSelection();
@@ -53,119 +48,77 @@ public:
 };
 
 #pragma region Constructor/Destructor
-//constructs appwrapper to open filestreams
-FitnessAppWrapper::FitnessAppWrapper()
-{
+FitnessAppWrapper::FitnessAppWrapper(){}
 
+FitnessAppWrapper::~FitnessAppWrapper()
+{
+	//make sure files arent open when out of scope
+	if (dietIn.is_open()) { dietIn.close(); }
+	if (exerciseIn.is_open()) exerciseIn.close();
+	if (dietOut.is_open()) dietOut.close();
+	if (exerciseOut.is_open()) exerciseOut.close();
 }
 #pragma endregion
 
 #pragma region Load functions
-void FitnessAppWrapper::loadDailyPlan(ifstream& fileStream, DietPlan& plan)
+template <typename T>
+void FitnessAppWrapper::loadDailyPlan(ifstream& fileStream, T& plan)
 {
 	fileStream >> plan;
 }
 
-
-void FitnessAppWrapper::loadDailyPlan(ifstream& fileStream, ExercisePlan& plan)
-{
-	fileStream >> plan;
-}
-
-
-void FitnessAppWrapper::loadWeeklyPlan(ifstream& fileStream, List<DietPlan> *list)
+template <typename T>
+void FitnessAppWrapper::loadWeeklyPlan(ifstream& fileStream, List<T> *list)
 {
 	list->clearList();
-	DietPlan tempPlan;
+	T tempPlan;
 	while (!fileStream.eof())
 	{
 		loadDailyPlan(fileStream, tempPlan);
 		list->insertAtFront(tempPlan);
-	}
-}
-
-void FitnessAppWrapper::loadWeeklyPlan(ifstream& fileStream, List<ExercisePlan> *list)
-{
-	list->clearList();
-	ExercisePlan tempPlan;
-	while (!fileStream.eof())
-	{
-		loadDailyPlan(fileStream, tempPlan);
-		list->insertAtFront(tempPlan);
+		
 	}
 }
 #pragma endregion
 
 #pragma region Store Functions
-void FitnessAppWrapper::storeDailyPlan(ofstream& fileStream, DietPlan& plan)
+
+template <typename T>
+void FitnessAppWrapper::storeDailyPlan(ofstream& fileStream, T& plan)
 {
 	fileStream << plan;
 }
-void FitnessAppWrapper::storeDailyPlan(ofstream& fileStream, ExercisePlan& plan)
+template <typename T>
+void FitnessAppWrapper::storeWeeklyPlan(ofstream& fileStream, List<T>& list)
 {
-	fileStream << plan;
-}
-void FitnessAppWrapper::storeWeeklyPlan(ofstream& fileStream, List<DietPlan> list)
-{
-	Node<DietPlan>* pCur = list.getHead();
-	DietPlan planCur;
+	Node<T>* pCur = list.getHead();
+	T planCur;
 	while (pCur != nullptr)
 	{
 		planCur = pCur->getPlan();
 		storeDailyPlan(fileStream, planCur);
-		if (pCur->getNext() != nullptr)
-		{
-			fileStream << "\n";
-		}
 		pCur = pCur->getNext();
-	}
-}
-void FitnessAppWrapper::storeWeeklyPlan(ofstream& fileStream, List<ExercisePlan> list)
-{
-	Node<ExercisePlan>* pCur = list.getHead();
-	ExercisePlan planCur;
-	while (pCur != nullptr)
-	{
-		planCur = pCur->getPlan();
-		storeDailyPlan(fileStream, planCur);
-		if (pCur->getNext() != nullptr)
+		if (pCur != nullptr)
 		{
-			fileStream << "\n";
+			fileStream << "\n\n";
 		}
-		pCur = pCur->getNext();
 	}
 }
 #pragma endregion
 
 #pragma region Display Functions
-void FitnessAppWrapper::displayDailyPlan(DietPlan planCur)
-{
-	cout << planCur;
-	cout << "\n";
-}
-void FitnessAppWrapper::displayDailyPlan(ExercisePlan planCur)
+template <typename T>
+void FitnessAppWrapper::displayDailyPlan(T planCur)
 {
 	cout << planCur;
 	cout << "\n";
 }
 
-void FitnessAppWrapper::displayWeeklyPlan(List<DietPlan> *dietList)
+template <typename T>
+void FitnessAppWrapper::displayWeeklyPlan(List<T> *exerciseList)
 {
-	Node<DietPlan>* pCur = dietList->getHead();
-	DietPlan planCur;
-	while (pCur != nullptr)
-	{
-		planCur = pCur->getPlan();
-		displayDailyPlan(planCur);
-		pCur = pCur->getNext();
-	}
-	system("pause");
-}
-
-void FitnessAppWrapper::displayWeeklyPlan(List<ExercisePlan> *exerciseList)
-{
-	Node<ExercisePlan>* pCur = exerciseList->getHead();
-	ExercisePlan planCur;
+	Node<T>* pCur = exerciseList->getHead();
+	T planCur;
 	while (pCur != nullptr)
 	{
 		planCur = pCur->getPlan();
@@ -178,32 +131,14 @@ void FitnessAppWrapper::displayWeeklyPlan(List<ExercisePlan> *exerciseList)
 #pragma endregion
 
 #pragma region Edit Functions
-DietPlan* FitnessAppWrapper::getPlan(List<DietPlan>* list)
+template <typename T>
+T* FitnessAppWrapper::getPlan(List<T>* list)
 {
 	displayWeeklyPlan(list);
 	cout << "\nEnter the date of the plan you want to edit: ";
 	string date;
 	cin >> date;
-	Node<DietPlan>* pCur = list->getHead();
-	while (pCur != nullptr)
-	{
-		if (pCur->getPlan().getDate() == date)
-		{
-			return &(pCur->getPlan());
-		}
-		
-		pCur = pCur->getNext();
-	}
-	cout << "Plan not found." << endl;
-}
-
-ExercisePlan* FitnessAppWrapper::getPlan(List<ExercisePlan>* list)
-{
-	displayWeeklyPlan(list);
-	cout << "\nEnter the date of the plan you want to edit: ";
-	string date;
-	cin >> date;
-	Node<ExercisePlan>* pCur = list->getHead();
+	Node<T>* pCur = list->getHead();
 	while (pCur != nullptr)
 	{
 		if (pCur->getPlan().getDate() == date)
@@ -216,7 +151,8 @@ ExercisePlan* FitnessAppWrapper::getPlan(List<ExercisePlan>* list)
 	cout << "Plan not found." << endl;
 }
 
-void FitnessAppWrapper::editDailyPlan(DietPlan *plan)
+template <typename T>
+void FitnessAppWrapper::editDailyPlan(T *plan)
 {
 	system("CLS");
 	cout << "Which part of the plan would you like to edit?\n";
@@ -237,29 +173,6 @@ void FitnessAppWrapper::editDailyPlan(DietPlan *plan)
 		break;
 	}
 }
-
-void FitnessAppWrapper::editDailyPlan(ExercisePlan *plan)
-{
-	system("CLS");
-	cout << "Which part of the plan would you like to edit?\n";
-	cout << "1. Goal\n";
-	cout << "2. Plan Name\n";
-	cout << "3. Date\n";
-	int choice;
-	cin >> choice;
-	switch (choice)
-	{
-	case 1: plan->editGoal();
-		break;
-	case 2: plan->editName();
-		break;
-	case 3: plan->editDate();
-		break;
-	default: cout << "Invalid choice." << endl;
-		break;
-	}
-}
-
 #pragma endregion
 
 #pragma region Menu functions
@@ -295,6 +208,11 @@ void FitnessAppWrapper::processSelection(int choice)
 	{
 		case 1: 
 			dietIn.open("dietPlans.txt");
+
+			if (!dietIn.is_open())
+			{
+				cout << "Not opened" << endl;
+			}
 			loadWeeklyPlan(dietIn, &dietList);
 			dietIn.close();
 			break;
@@ -329,7 +247,6 @@ void FitnessAppWrapper::processSelection(int choice)
 			storeWeeklyPlan(exerciseOut, exerciseList);
 			exerciseOut.close();
 			cout << "Exiting program..." << endl;
-			// add store plan to file
 			exit(0);
 			break;
 	}
@@ -339,16 +256,10 @@ void FitnessAppWrapper::processSelection(int choice)
 
 void FitnessAppWrapper::runApp()
 {
-
-
 	while (1)
 	{
 		displayMenu();
 		processSelection(getSelection());
 		system("CLS");
 	}
-	dietIn.close();
-	dietOut.close();
-	exerciseIn.close();
-	exerciseOut.close();
 }
