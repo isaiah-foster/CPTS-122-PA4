@@ -56,6 +56,7 @@ ExercisePlan::ExercisePlan(const ExercisePlan& copy)
 }
 ExercisePlan::~ExercisePlan()
 {
+	
 }
 void ExercisePlan::setGoal(int _goalSteps)
 {

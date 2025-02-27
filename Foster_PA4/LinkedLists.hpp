@@ -75,7 +75,7 @@ List<T>::List()
 template <typename T>
 List<T>::~List()
 {
-	pHead = nullptr;
+	clearList();
 }
 
 template <typename T>
@@ -87,6 +87,7 @@ bool List<T>::isEmpty()
 	}
 	return false;
 }
+
 template <typename T>
 Node<T>* List<T>::getHead()
 {

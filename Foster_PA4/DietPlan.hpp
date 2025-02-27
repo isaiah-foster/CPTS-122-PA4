@@ -44,13 +44,13 @@ DietPlan::DietPlan(const DietPlan& copy)
 }
 DietPlan::~DietPlan()
 {
-
+	
 }
+
 void DietPlan::setGoal(int _goalCalories)
 {
 	goal = _goalCalories;
 }
-
 void DietPlan::setPlanName(string _planName)
 {
 	planName = _planName;
@@ -59,6 +59,7 @@ void DietPlan::setDate(string _date)
 {
 	date = _date;
 }
+
 int DietPlan::getGoal() const
 {
 	return goal;
